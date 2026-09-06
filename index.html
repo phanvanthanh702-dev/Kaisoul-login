@@ -1,0 +1,3389 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#111827">
+
+  <title>KAISOUL ID</title>
+
+  <meta
+    name="description"
+    content="KAISOUL ID - Một tài khoản cho toàn bộ hệ sinh thái KAISOUL."
+  >
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- =========================
+       TOAST
+  ========================== -->
+  <div
+    id="toastContainer"
+    class="toast-container"
+    aria-live="polite"
+    aria-atomic="true"
+  ></div>
+
+
+  <!-- =========================
+       LOADING
+  ========================== -->
+  <div id="loadingOverlay" class="loading-overlay hidden">
+    <div class="loading-box">
+      <div class="spinner"></div>
+      <p id="loadingText">Đang xử lý...</p>
+    </div>
+  </div>
+
+
+  <!-- =========================
+       HEADER
+  ========================== -->
+  <header class="app-header">
+
+    <div class="header-container">
+
+      <div class="brand">
+        <span class="logo-icon">🛡️</span>
+
+        <div>
+          <h1 class="brand-title">KAISOUL ID</h1>
+          <p class="brand-subtitle">
+            Unified Account
+          </p>
+        </div>
+      </div>
+
+      <div class="header-actions">
+
+        <button
+          id="themeToggleBtn"
+          class="theme-toggle-btn"
+          type="button"
+          aria-label="Đổi giao diện"
+          title="Đổi giao diện"
+        >
+          <span id="themeIcon" class="theme-icon">🌙</span>
+        </button>
+
+      </div>
+
+    </div>
+
+  </header>
+
+
+  <!-- =========================
+       MAIN
+  ========================== -->
+  <main class="main-content">
+
+    <div class="container">
+
+
+      <!-- ==================================================
+           AUTH SECTION
+      =================================================== -->
+      <section
+        id="authSection"
+        class="card auth-card"
+      >
+
+        <div class="auth-heading">
+
+          <div class="auth-logo">
+            🛡️
+          </div>
+
+          <h2>KAISOUL ID</h2>
+
+          <p>
+            Một tài khoản cho toàn bộ hệ sinh thái KAISOUL.
+          </p>
+
+        </div>
+
+
+        <!-- TABS -->
+
+        <div
+          class="auth-tabs"
+          role="tablist"
+          aria-label="Xác thực tài khoản"
+        >
+
+          <button
+            id="loginTab"
+            class="tab-btn active"
+            type="button"
+            role="tab"
+            aria-selected="true"
+            aria-controls="loginForm"
+          >
+            Đăng nhập
+          </button>
+
+          <button
+            id="registerTab"
+            class="tab-btn"
+            type="button"
+            role="tab"
+            aria-selected="false"
+            aria-controls="registerForm"
+          >
+            Đăng ký
+          </button>
+
+        </div>
+
+
+        <!-- ==================================================
+             LOGIN FORM
+        =================================================== -->
+
+        <form
+          id="loginForm"
+          class="auth-form"
+          role="tabpanel"
+          aria-labelledby="loginTab"
+          novalidate
+        >
+
+          <div class="form-group">
+
+            <label for="loginIdentifier">
+              KAISOUL ID / Username / Email
+            </label>
+
+            <input
+              type="text"
+              id="loginIdentifier"
+              name="login"
+              required
+              autocomplete="username"
+              placeholder="KS-XXXXXXXXXX"
+              maxlength="255"
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="loginPassword">
+              Mật khẩu
+            </label>
+
+            <div class="password-wrapper">
+
+              <input
+                type="password"
+                id="loginPassword"
+                name="password"
+                required
+                autocomplete="current-password"
+                placeholder="Nhập mật khẩu"
+                maxlength="200"
+              >
+
+              <button
+                type="button"
+                class="toggle-password"
+                data-target="loginPassword"
+                aria-label="Hiện mật khẩu"
+              >
+                👁️
+              </button>
+
+            </div>
+
+          </div>
+
+
+          <div class="form-row">
+
+            <label class="checkbox-label">
+
+              <input
+                type="checkbox"
+                id="rememberLogin"
+              >
+
+              <span>Ghi nhớ phiên đăng nhập</span>
+
+            </label>
+
+            <button
+              type="button"
+              id="forgotPasswordBtn"
+              class="link-btn"
+            >
+              Quên mật khẩu?
+            </button>
+
+          </div>
+
+
+          <button
+            type="submit"
+            id="loginSubmitBtn"
+            class="primary-btn"
+          >
+            Đăng nhập
+          </button>
+
+
+          <div
+            id="loginMessage"
+            class="form-message hidden"
+            role="alert"
+          ></div>
+
+
+        </form>
+
+
+        <!-- ==================================================
+             REGISTER FORM
+        =================================================== -->
+
+        <form
+          id="registerForm"
+          class="auth-form hidden"
+          role="tabpanel"
+          aria-labelledby="registerTab"
+          novalidate
+        >
+
+          <div class="form-group">
+
+            <label for="registerUsername">
+              Username
+            </label>
+
+            <input
+              type="text"
+              id="registerUsername"
+              name="username"
+              required
+              autocomplete="username"
+              placeholder="kaisoul_user"
+              minlength="3"
+              maxlength="30"
+              pattern="[a-z0-9_]{3,30}"
+            >
+
+            <small>
+              3–30 ký tự, chỉ chữ thường, số và dấu gạch dưới.
+            </small>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="registerDisplayName">
+              Họ và tên
+            </label>
+
+            <input
+              type="text"
+              id="registerDisplayName"
+              name="displayName"
+              required
+              autocomplete="name"
+              placeholder="Nguyễn Văn A"
+              minlength="2"
+              maxlength="100"
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="registerEmail">
+              Email
+            </label>
+
+            <input
+              type="email"
+              id="registerEmail"
+              name="email"
+              required
+              autocomplete="email"
+              placeholder="example@email.com"
+              maxlength="255"
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="registerPassword">
+              Mật khẩu
+            </label>
+
+            <div class="password-wrapper">
+
+              <input
+                type="password"
+                id="registerPassword"
+                name="password"
+                required
+                autocomplete="new-password"
+                placeholder="Ít nhất 8 ký tự"
+                minlength="8"
+                maxlength="200"
+              >
+
+              <button
+                type="button"
+                class="toggle-password"
+                data-target="registerPassword"
+                aria-label="Hiện mật khẩu"
+              >
+                👁️
+              </button>
+
+            </div>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="registerPasswordConfirm">
+              Nhập lại mật khẩu
+            </label>
+
+            <div class="password-wrapper">
+
+              <input
+                type="password"
+                id="registerPasswordConfirm"
+                required
+                autocomplete="new-password"
+                placeholder="Nhập lại mật khẩu"
+                minlength="8"
+                maxlength="200"
+              >
+
+              <button
+                type="button"
+                class="toggle-password"
+                data-target="registerPasswordConfirm"
+                aria-label="Hiện mật khẩu"
+              >
+                👁️
+              </button>
+
+            </div>
+
+          </div>
+
+
+          <button
+            type="submit"
+            id="registerSubmitBtn"
+            class="primary-btn"
+          >
+            Tạo tài khoản
+          </button>
+
+
+          <div
+            id="registerMessage"
+            class="form-message hidden"
+            role="alert"
+          ></div>
+
+
+          <div class="security-note">
+            🔐 Mật khẩu được mã hóa trước khi lưu vào hệ thống.
+          </div>
+
+        </form>
+
+
+        <div class="auth-switch">
+
+          <span>
+            KAISOUL ID
+          </span>
+
+          <span>
+            •
+          </span>
+
+          <span>
+            Unified Account System
+          </span>
+
+        </div>
+
+      </section>
+
+
+      <!-- ==================================================
+           PROFILE / DASHBOARD
+      =================================================== -->
+
+      <section
+        id="profileSection"
+        class="dashboard hidden"
+      >
+
+
+        <!-- PROFILE CARD -->
+
+        <div class="card profile-card">
+
+          <div class="profile-top">
+
+            <div class="avatar-wrapper">
+
+              <img
+                id="userAvatar"
+                class="avatar"
+                src=""
+                alt="Ảnh đại diện"
+              >
+
+            </div>
+
+
+            <div class="profile-info">
+
+              <h2 id="profileName">
+                Đang tải...
+              </h2>
+
+              <p id="profileUsername">
+                @username
+              </p>
+
+              <span
+                id="profileStatus"
+                class="status-badge"
+              >
+                Active
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <div class="profile-id-box">
+
+            <div>
+
+              <span>
+                KAISOUL ID
+              </span>
+
+              <strong id="profileKaisoulId">
+                ---
+              </strong>
+
+            </div>
+
+            <button
+              id="copyIdBtn"
+              class="small-btn"
+              type="button"
+            >
+              Sao chép
+            </button>
+
+          </div>
+
+
+          <div class="profile-details">
+
+            <div class="detail">
+
+              <span>Email</span>
+
+              <strong id="profileEmail">
+                ---
+              </strong>
+
+            </div>
+
+
+            <div class="detail">
+
+              <span>Xác minh Email</span>
+
+              <strong
+                id="profileVerified"
+                class="text-warning"
+              >
+                Chưa xác minh
+              </strong>
+
+            </div>
+
+
+            <div class="detail">
+
+              <span>2FA</span>
+
+              <strong id="profile2FA">
+                Tắt
+              </strong>
+
+            </div>
+
+
+            <div class="detail">
+
+              <span>Ngày tham gia</span>
+
+              <strong id="profileCreatedAt">
+                ---
+              </strong>
+
+            </div>
+
+          </div>
+
+
+          <div class="profile-actions">
+
+            <button
+              id="editProfileBtn"
+              class="secondary-btn"
+              type="button"
+            >
+              Chỉnh sửa hồ sơ
+            </button>
+
+            <button
+              id="logoutBtn"
+              class="danger-btn"
+              type="button"
+            >
+              Đăng xuất
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <!-- ==================================================
+             ACCOUNT ACTIONS
+        =================================================== -->
+
+        <section class="section">
+
+          <div class="section-title">
+
+            <h2>
+              Tài khoản & bảo mật
+            </h2>
+
+          </div>
+
+
+          <div class="action-grid">
+
+
+            <button
+              id="changePasswordBtn"
+              class="action-card"
+              type="button"
+            >
+
+              <span class="action-icon">
+                🔑
+              </span>
+
+              <span>
+                <strong>
+                  Đổi mật khẩu
+                </strong>
+
+                <small>
+                  Cập nhật mật khẩu tài khoản
+                </small>
+              </span>
+
+            </button>
+
+
+            <button
+              id="loginHistoryBtn"
+              class="action-card"
+              type="button"
+            >
+
+              <span class="action-icon">
+                📋
+              </span>
+
+              <span>
+                <strong>
+                  Lịch sử đăng nhập
+                </strong>
+
+                <small>
+                  Kiểm tra hoạt động đăng nhập
+                </small>
+              </span>
+
+            </button>
+
+
+            <button
+              id="sessionsBtn"
+              class="action-card"
+              type="button"
+            >
+
+              <span class="action-icon">
+                📱
+              </span>
+
+              <span>
+                <strong>
+                  Thiết bị đăng nhập
+                </strong>
+
+                <small>
+                  Quản lý các phiên đăng nhập
+                </small>
+              </span>
+
+            </button>
+
+
+            <button
+              id="connectedAppsBtn"
+              class="action-card"
+              type="button"
+            >
+
+              <span class="action-icon">
+                🔗
+              </span>
+
+              <span>
+                <strong>
+                  Ứng dụng đã kết nối
+                </strong>
+
+                <small>
+                  Quản lý quyền truy cập
+                </small>
+              </span>
+
+            </button>
+
+
+            <button
+              id="notificationsBtn"
+              class="action-card"
+              type="button"
+            >
+
+              <span class="action-icon">
+                🔔
+              </span>
+
+              <span>
+                <strong>
+                  Thông báo
+                </strong>
+
+                <small>
+                  Xem thông báo tài khoản
+                </small>
+              </span>
+
+            </button>
+
+
+            <button
+              id="logoutAllBtn"
+              class="action-card danger-action"
+              type="button"
+            >
+
+              <span class="action-icon">
+                🚪
+              </span>
+
+              <span>
+                <strong>
+                  Đăng xuất tất cả
+                </strong>
+
+                <small>
+                  Đăng xuất khỏi mọi thiết bị
+                </small>
+              </span>
+
+            </button>
+
+
+          </div>
+
+        </section>
+
+
+        <!-- ==================================================
+             KAISOUL ECOSYSTEM
+        =================================================== -->
+
+        <section class="section">
+
+          <div class="section-title">
+
+            <h2>
+              Hệ sinh thái KAISOUL
+            </h2>
+
+            <span>
+              Một tài khoản
+            </span>
+
+          </div>
+
+
+          <div class="ecosystem-grid">
+
+
+            <a
+              class="eco-card"
+              href="https://kaisoul-news.example"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+
+              <span>
+                📰
+              </span>
+
+              <strong>
+                KAISOUL NEWS
+              </strong>
+
+              <small>
+                Tin tức
+              </small>
+
+            </a>
+
+
+            <a
+              class="eco-card"
+              href="https://kaisoul-dev.example"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+
+              <span>
+                💻
+              </span>
+
+              <strong>
+                KAISOUL DEV
+              </strong>
+
+              <small>
+                Lập trình
+              </small>
+
+            </a>
+
+
+            <a
+              class="eco-card"
+              href="https://kaisoul-chat.example"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+
+              <span>
+                💬
+              </span>
+
+              <strong>
+                KAISOUL CHAT
+              </strong>
+
+              <small>
+                Nhắn tin
+              </small>
+
+            </a>
+
+
+            <a
+              class="eco-card"
+              href="https://kaisoul-tool.example"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+
+              <span>
+                🛠️
+              </span>
+
+              <strong>
+                KAISOUL TOOL
+              </strong>
+
+              <small>
+                Công cụ
+              </small>
+
+            </a>
+
+
+            <a
+              class="eco-card"
+              href="https://kaisoul-cook.example"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+
+              <span>
+                🍳
+              </span>
+
+              <strong>
+                KAISOUL COOK
+              </strong>
+
+              <small>
+                Ẩm thực
+              </small>
+
+            </a>
+
+
+            <a
+              class="eco-card"
+              href="https://kaisoul-chess.example"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+
+              <span>
+                ♟️
+              </span>
+
+              <strong>
+                KAISOUL CHESS
+              </strong>
+
+              <small>
+                Cờ vua
+              </small>
+
+            </a>
+
+
+            <a
+              class="eco-card"
+              href="https://kaisoul-ai.example"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+
+              <span>
+                🤖
+              </span>
+
+              <strong>
+                KAISOUL AI
+              </strong>
+
+              <small>
+                Trí tuệ nhân tạo
+              </small>
+
+            </a>
+
+
+          </div>
+
+        </section>
+
+
+        <!-- LOGOUT -->
+
+        <div class="logout-area">
+
+          <button
+            id="dashboardLogoutBtn"
+            class="secondary-danger-btn"
+            type="button"
+          >
+            Đăng xuất tài khoản
+          </button>
+
+        </div>
+
+
+      </section>
+
+    </div>
+
+  </main>
+
+
+  <!-- ==================================================
+       MODAL
+  =================================================== -->
+
+  <div
+    id="modal"
+    class="modal hidden"
+    role="dialog"
+    aria-modal="true"
+    aria-hidden="true"
+  >
+
+    <div
+      id="modalOverlay"
+      class="modal-overlay"
+    ></div>
+
+
+    <div class="modal-content">
+
+      <div class="modal-header">
+
+        <h3 id="modalTitle">
+          Thông báo
+        </h3>
+
+        <button
+          id="modalCloseBtn"
+          class="close-btn"
+          type="button"
+          aria-label="Đóng"
+        >
+          &times;
+        </button>
+
+      </div>
+
+
+      <div
+        id="modalBody"
+        class="modal-body"
+      ></div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ==================================================
+       JAVASCRIPT
+  =================================================== -->
+
+  <script>
+
+    "use strict";
+
+
+    /* ==================================================
+       CONFIG
+    ================================================== */
+
+    const API_BASE = "";
+
+
+    /* ==================================================
+       STATE
+    ================================================== */
+
+    const state = {
+
+      user: null,
+
+      theme:
+        localStorage.getItem("kaisoul_theme") ||
+        "light"
+
+    };
+
+
+    /* ==================================================
+       DOM
+    ================================================== */
+
+    const $ = (id) =>
+      document.getElementById(id);
+
+
+    const authSection =
+      $("authSection");
+
+    const profileSection =
+      $("profileSection");
+
+    const loginTab =
+      $("loginTab");
+
+    const registerTab =
+      $("registerTab");
+
+    const loginForm =
+      $("loginForm");
+
+    const registerForm =
+      $("registerForm");
+
+    const modal =
+      $("modal");
+
+    const modalTitle =
+      $("modalTitle");
+
+    const modalBody =
+      $("modalBody");
+
+    const modalCloseBtn =
+      $("modalCloseBtn");
+
+    const modalOverlay =
+      $("modalOverlay");
+
+    const loadingOverlay =
+      $("loadingOverlay");
+
+    const loadingText =
+      $("loadingText");
+
+
+    /* ==================================================
+       HELPERS
+    ================================================== */
+
+    function escapeHtml(value) {
+
+      return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+    }
+
+
+    function showLoading(text = "Đang xử lý...") {
+
+      loadingText.textContent = text;
+
+      loadingOverlay.classList.remove("hidden");
+
+    }
+
+
+    function hideLoading() {
+
+      loadingOverlay.classList.add("hidden");
+
+    }
+
+
+    function showToast(
+      message,
+      type = "info"
+    ) {
+
+      const container =
+        $("toastContainer");
+
+      const toast =
+        document.createElement("div");
+
+      toast.className =
+        `toast toast-${type}`;
+
+      toast.textContent =
+        message;
+
+      container.appendChild(toast);
+
+      requestAnimationFrame(() => {
+        toast.classList.add("show");
+      });
+
+      setTimeout(() => {
+
+        toast.classList.remove("show");
+
+        setTimeout(() => {
+          toast.remove();
+        }, 300);
+
+      }, 3500);
+
+    }
+
+
+    function showFormMessage(
+      element,
+      message,
+      type = "error"
+    ) {
+
+      element.textContent =
+        message;
+
+      element.className =
+        `form-message ${type}`;
+
+      element.classList.remove("hidden");
+
+    }
+
+
+    function clearFormMessage(element) {
+
+      element.textContent = "";
+
+      element.className =
+        "form-message hidden";
+
+    }
+
+
+    function formatDate(value) {
+
+      if (!value) {
+        return "---";
+      }
+
+      const date =
+        new Date(value);
+
+      if (Number.isNaN(date.getTime())) {
+        return String(value);
+      }
+
+      return date.toLocaleDateString(
+        "vi-VN",
+        {
+          day: "2-digit",
+          month: "2-digit",
+          year: "numeric"
+        }
+      );
+
+    }
+
+
+    function getInitials(name) {
+
+      const text =
+        String(name || "K");
+
+      const parts =
+        text.trim().split(/\s+/);
+
+      if (parts.length === 1) {
+        return parts[0]
+          .substring(0, 2)
+          .toUpperCase();
+      }
+
+      return (
+        parts[0][0] +
+        parts[parts.length - 1][0]
+      ).toUpperCase();
+
+    }
+
+
+    function avatarFallback(name) {
+
+      const initials =
+        getInitials(name);
+
+      return (
+        "data:image/svg+xml;charset=UTF-8," +
+        encodeURIComponent(`
+          <svg xmlns="http://www.w3.org/2000/svg"
+               width="200"
+               height="200"
+               viewBox="0 0 200 200">
+
+            <rect
+              width="200"
+              height="200"
+              rx="100"
+              fill="#111827"
+            />
+
+            <text
+              x="100"
+              y="112"
+              text-anchor="middle"
+              font-size="72"
+              font-family="Arial"
+              fill="white">
+              ${initials}
+            </text>
+
+          </svg>
+        `)
+      );
+
+    }
+
+
+    /* ==================================================
+       API
+    ================================================== */
+
+    async function api(
+      endpoint,
+      options = {}
+    ) {
+
+      const config = {
+
+        credentials: "include",
+
+        ...options,
+
+        headers: {
+
+          "Content-Type":
+            "application/json",
+
+          ...(options.headers || {})
+
+        }
+
+      };
+
+
+      let response;
+
+
+      try {
+
+        response =
+          await fetch(
+            `${API_BASE}${endpoint}`,
+            config
+          );
+
+      } catch (error) {
+
+        console.error(
+          "NETWORK ERROR:",
+          error
+        );
+
+        throw new Error(
+          "Không thể kết nối máy chủ KAISOUL ID."
+        );
+
+      }
+
+
+      let data = null;
+
+
+      try {
+
+        data =
+          await response.json();
+
+      } catch {
+
+        data = null;
+
+      }
+
+
+      if (!response.ok) {
+
+        const message =
+          data?.message ||
+          `Máy chủ trả về lỗi ${response.status}.`;
+
+        const error =
+          new Error(message);
+
+        error.status =
+          response.status;
+
+        error.data =
+          data;
+
+        throw error;
+
+      }
+
+
+      return data;
+
+    }
+
+
+    /* ==================================================
+       THEME
+    ================================================== */
+
+    function applyTheme() {
+
+      if (state.theme === "dark") {
+
+        document.body.classList.add(
+          "dark-mode"
+        );
+
+        $("themeIcon").textContent =
+          "☀️";
+
+      } else {
+
+        document.body.classList.remove(
+          "dark-mode"
+        );
+
+        $("themeIcon").textContent =
+          "🌙";
+
+      }
+
+    }
+
+
+    applyTheme();
+
+
+    $("themeToggleBtn")
+      .addEventListener(
+        "click",
+        () => {
+
+          state.theme =
+            state.theme === "dark"
+              ? "light"
+              : "dark";
+
+          localStorage.setItem(
+            "kaisoul_theme",
+            state.theme
+          );
+
+          applyTheme();
+
+        }
+      );
+
+
+    /* ==================================================
+       MODAL
+    ================================================== */
+
+    function openModal(
+      title,
+      html
+    ) {
+
+      modalTitle.textContent =
+        title;
+
+      modalBody.innerHTML =
+        html;
+
+      modal.classList.remove(
+        "hidden"
+      );
+
+      modal.setAttribute(
+        "aria-hidden",
+        "false"
+      );
+
+      document.body.classList.add(
+        "modal-open"
+      );
+
+    }
+
+
+    function closeModal() {
+
+      modal.classList.add(
+        "hidden"
+      );
+
+      modal.setAttribute(
+        "aria-hidden",
+        "true"
+      );
+
+      modalBody.innerHTML = "";
+
+      document.body.classList.remove(
+        "modal-open"
+      );
+
+    }
+
+
+    window.openModal =
+      openModal;
+
+    window.closeModal =
+      closeModal;
+
+
+    modalCloseBtn
+      .addEventListener(
+        "click",
+        closeModal
+      );
+
+
+    modalOverlay
+      .addEventListener(
+        "click",
+        closeModal
+      );
+
+
+    document.addEventListener(
+      "keydown",
+      (event) => {
+
+        if (
+          event.key === "Escape" &&
+          !modal.classList.contains("hidden")
+        ) {
+
+          closeModal();
+
+        }
+
+      }
+    );
+
+
+    /* ==================================================
+       AUTH TABS
+    ================================================== */
+
+    function showLogin() {
+
+      loginTab.classList.add(
+        "active"
+      );
+
+      registerTab.classList.remove(
+        "active"
+      );
+
+      loginTab.setAttribute(
+        "aria-selected",
+        "true"
+      );
+
+      registerTab.setAttribute(
+        "aria-selected",
+        "false"
+      );
+
+      loginForm.classList.remove(
+        "hidden"
+      );
+
+      registerForm.classList.add(
+        "hidden"
+      );
+
+      $("loginIdentifier").focus();
+
+    }
+
+
+    function showRegister() {
+
+      registerTab.classList.add(
+        "active"
+      );
+
+      loginTab.classList.remove(
+        "active"
+      );
+
+      registerTab.setAttribute(
+        "aria-selected",
+        "true"
+      );
+
+      loginTab.setAttribute(
+        "aria-selected",
+        "false"
+      );
+
+      registerForm.classList.remove(
+        "hidden"
+      );
+
+      loginForm.classList.add(
+        "hidden"
+      );
+
+      $("registerUsername").focus();
+
+    }
+
+
+    loginTab.addEventListener(
+      "click",
+      showLogin
+    );
+
+
+    registerTab.addEventListener(
+      "click",
+      showRegister
+    );
+
+
+    /* ==================================================
+       PASSWORD TOGGLE
+    ================================================== */
+
+    document
+      .querySelectorAll(
+        ".toggle-password"
+      )
+      .forEach((button) => {
+
+        button.addEventListener(
+          "click",
+          () => {
+
+            const targetId =
+              button.dataset.target;
+
+            const input =
+              $(targetId);
+
+            if (!input) {
+              return;
+            }
+
+            if (
+              input.type ===
+              "password"
+            ) {
+
+              input.type =
+                "text";
+
+              button.textContent =
+                "🙈";
+
+              button.setAttribute(
+                "aria-label",
+                "Ẩn mật khẩu"
+              );
+
+            } else {
+
+              input.type =
+                "password";
+
+              button.textContent =
+                "👁️";
+
+              button.setAttribute(
+                "aria-label",
+                "Hiện mật khẩu"
+              );
+
+            }
+
+          }
+        );
+
+      });
+
+
+    /* ==================================================
+       RENDER PROFILE
+    ================================================== */
+
+    function renderProfile() {
+
+      if (!state.user) {
+
+        authSection.classList.remove(
+          "hidden"
+        );
+
+        profileSection.classList.add(
+          "hidden"
+        );
+
+        return;
+
+      }
+
+
+      authSection.classList.add(
+        "hidden"
+      );
+
+      profileSection.classList.remove(
+        "hidden"
+      );
+
+
+      const user =
+        state.user;
+
+
+      $("profileName").textContent =
+        user.displayName ||
+        user.name ||
+        "KAISOUL User";
+
+
+      $("profileUsername").textContent =
+        user.username
+          ? `@${user.username}`
+          : "";
+
+
+      $("profileKaisoulId").textContent =
+        user.kaisoulId ||
+        "---";
+
+
+      $("profileEmail").textContent =
+        user.email ||
+        "---";
+
+
+      $("profileCreatedAt").textContent =
+        formatDate(
+          user.createdAt
+        );
+
+
+      $("profileStatus").textContent =
+        user.status || "active";
+
+
+      $("profile2FA").textContent =
+        user.twoFactorEnabled
+          ? "Đã bật"
+          : "Tắt";
+
+
+      const verified =
+        $("profileVerified");
+
+
+      if (user.emailVerified) {
+
+        verified.textContent =
+          "Đã xác minh";
+
+        verified.className =
+          "text-success";
+
+      } else {
+
+        verified.textContent =
+          "Chưa xác minh";
+
+        verified.className =
+          "text-warning";
+
+      }
+
+
+      const avatar =
+        $("userAvatar");
+
+
+      avatar.src =
+        user.avatar ||
+        avatarFallback(
+          user.displayName
+        );
+
+
+      avatar.onerror =
+        () => {
+
+          avatar.onerror =
+            null;
+
+          avatar.src =
+            avatarFallback(
+              user.displayName
+            );
+
+        };
+
+    }
+
+
+    /* ==================================================
+       CHECK SESSION
+    ================================================== */
+
+    async function checkSession() {
+
+      try {
+
+        const result =
+          await api(
+            "/api/auth/me"
+          );
+
+        if (
+          result &&
+          result.success &&
+          result.user
+        ) {
+
+          state.user =
+            result.user;
+
+          renderProfile();
+
+          return true;
+
+        }
+
+      } catch (error) {
+
+        if (
+          error.status !== 401
+        ) {
+
+          console.warn(
+            "Session check:",
+            error.message
+          );
+
+        }
+
+      }
+
+      state.user =
+        null;
+
+      renderProfile();
+
+      return false;
+
+    }
+
+
+    /* ==================================================
+       LOGIN
+    ================================================== */
+
+    loginForm.addEventListener(
+      "submit",
+      async (event) => {
+
+        event.preventDefault();
+
+
+        const message =
+          $("loginMessage");
+
+        clearFormMessage(message);
+
+
+        const login =
+          $("loginIdentifier")
+            .value
+            .trim();
+
+
+        const password =
+          $("loginPassword")
+            .value;
+
+
+        if (!login) {
+
+          showFormMessage(
+            message,
+            "Vui lòng nhập KAISOUL ID, username hoặc email."
+          );
+
+          return;
+
+        }
+
+
+        if (!password) {
+
+          showFormMessage(
+            message,
+            "Vui lòng nhập mật khẩu."
+          );
+
+          return;
+
+        }
+
+
+        const submit =
+          $("loginSubmitBtn");
+
+        submit.disabled =
+          true;
+
+
+        showLoading(
+          "Đang đăng nhập..."
+        );
+
+
+        try {
+
+          const result =
+            await api(
+              "/api/auth/login",
+              {
+                method: "POST",
+
+                body: JSON.stringify({
+                  login,
+                  password,
+                  deviceName:
+                    navigator.userAgent
+                })
+
+              }
+            );
+
+
+          if (
+            result.success &&
+            result.user
+          ) {
+
+            state.user =
+              result.user;
+
+            renderProfile();
+
+            loginForm.reset();
+
+            showToast(
+              "Đăng nhập thành công!",
+              "success"
+            );
+
+          } else {
+
+            showFormMessage(
+              message,
+              result.message ||
+                "Không thể đăng nhập."
+            );
+
+          }
+
+        } catch (error) {
+
+          console.error(
+            "LOGIN ERROR:",
+            error
+          );
+
+          showFormMessage(
+            message,
+            error.message ||
+              "Đăng nhập thất bại."
+          );
+
+        } finally {
+
+          submit.disabled =
+            false;
+
+          hideLoading();
+
+        }
+
+      }
+    );
+
+
+    /* ==================================================
+       REGISTER
+    ================================================== */
+
+    registerForm.addEventListener(
+      "submit",
+      async (event) => {
+
+        event.preventDefault();
+
+
+        const message =
+          $("registerMessage");
+
+        clearFormMessage(message);
+
+
+        const username =
+          $("registerUsername")
+            .value
+            .trim()
+            .toLowerCase();
+
+
+        const displayName =
+          $("registerDisplayName")
+            .value
+            .trim();
+
+
+        const email =
+          $("registerEmail")
+            .value
+            .trim()
+            .toLowerCase();
+
+
+        const password =
+          $("registerPassword")
+            .value;
+
+
+        const confirmPassword =
+          $("registerPasswordConfirm")
+            .value;
+
+
+        if (
+          !/^[a-z0-9_]{3,30}$/
+            .test(username)
+        ) {
+
+          showFormMessage(
+            message,
+            "Username không hợp lệ."
+          );
+
+          return;
+
+        }
+
+
+        if (
+          displayName.length < 2 ||
+          displayName.length > 100
+        ) {
+
+          showFormMessage(
+            message,
+            "Họ và tên phải từ 2 đến 100 ký tự."
+          );
+
+          return;
+
+        }
+
+
+        if (
+          !email ||
+          !email.includes("@")
+        ) {
+
+          showFormMessage(
+            message,
+            "Email không hợp lệ."
+          );
+
+          return;
+
+        }
+
+
+        if (
+          password.length < 8
+        ) {
+
+          showFormMessage(
+            message,
+            "Mật khẩu phải có ít nhất 8 ký tự."
+          );
+
+          return;
+
+        }
+
+
+        if (
+          password !==
+          confirmPassword
+        ) {
+
+          showFormMessage(
+            message,
+            "Mật khẩu nhập lại không khớp."
+          );
+
+          return;
+
+        }
+
+
+        const submit =
+          $("registerSubmitBtn");
+
+        submit.disabled =
+          true;
+
+
+        showLoading(
+          "Đang tạo tài khoản..."
+        );
+
+
+        try {
+
+          const result =
+            await api(
+              "/api/auth/register",
+              {
+                method: "POST",
+
+                body: JSON.stringify({
+
+                  username,
+
+                  displayName,
+
+                  email,
+
+                  password
+
+                })
+
+              }
+            );
+
+
+          if (
+            result.success &&
+            result.user
+          ) {
+
+            showToast(
+              "Tạo tài khoản thành công!",
+              "success"
+            );
+
+
+            registerForm.reset();
+
+
+            showLogin();
+
+
+            $("loginIdentifier")
+              .value =
+              result.user.email;
+
+
+            showFormMessage(
+              $("loginMessage"),
+              `Tài khoản đã được tạo. KAISOUL ID của bạn: ${result.user.kaisoulId}`,
+              "success"
+            );
+
+          } else {
+
+            showFormMessage(
+              message,
+              result.message ||
+                "Không thể tạo tài khoản."
+            );
+
+          }
+
+        } catch (error) {
+
+          console.error(
+            "REGISTER ERROR:",
+            error
+          );
+
+          showFormMessage(
+            message,
+            error.message ||
+              "Đăng ký thất bại."
+          );
+
+        } finally {
+
+          submit.disabled =
+            false;
+
+          hideLoading();
+
+        }
+
+      }
+    );
+
+
+    /* ==================================================
+       FORGOT PASSWORD
+    ================================================== */
+
+    $("forgotPasswordBtn")
+      .addEventListener(
+        "click",
+        () => {
+
+          openModal(
+            "Quên mật khẩu",
+            `
+              <div class="forgot-box">
+
+                <div class="forgot-icon">
+                  🔐
+                </div>
+
+                <h3>
+                  Khôi phục tài khoản
+                </h3>
+
+                <p>
+                  Chức năng gửi email khôi phục
+                  mật khẩu sẽ được bật sau khi
+                  hệ thống email KAISOUL ID
+                  được cấu hình.
+                </p>
+
+                <button
+                  class="secondary-btn"
+                  type="button"
+                  onclick="closeModal()"
+                >
+                  Đã hiểu
+                </button>
+
+              </div>
+            `
+          );
+
+        }
+      );
+
+
+    /* ==================================================
+       EDIT PROFILE
+    ================================================== */
+
+    async function updateProfile(
+      event
+    ) {
+
+      event.preventDefault();
+
+
+      const form =
+        $("editProfileForm");
+
+
+      const displayName =
+        $("editDisplayName")
+          .value
+          .trim();
+
+
+      const username =
+        $("editUsername")
+          .value
+          .trim()
+          .toLowerCase();
+
+
+      const avatar =
+        $("editAvatar")
+          .value
+          .trim();
+
+
+      const bio =
+        $("editBio")
+          .value
+          .trim();
+
+
+      if (
+        displayName.length < 2 ||
+        displayName.length > 100
+      ) {
+
+        showToast(
+          "Tên hiển thị không hợp lệ.",
+          "error"
+        );
+
+        return;
+
+      }
+
+
+      if (
+        !/^[a-z0-9_]{3,30}$/
+          .test(username)
+      ) {
+
+        showToast(
+          "Username không hợp lệ.",
+          "error"
+        );
+
+        return;
+
+      }
+
+
+      const submit =
+        form.querySelector(
+          'button[type="submit"]'
+        );
+
+
+      submit.disabled =
+        true;
+
+
+      showLoading(
+        "Đang cập nhật hồ sơ..."
+      );
+
+
+      try {
+
+        const result =
+          await api(
+            "/api/profile",
+            {
+
+              method: "PUT",
+
+              body: JSON.stringify({
+
+                displayName,
+
+                username,
+
+                avatar,
+
+                bio
+
+              })
+
+            }
+          );
+
+
+        if (
+          result.success &&
+          result.user
+        ) {
+
+          state.user =
+            result.user;
+
+          renderProfile();
+
+          closeModal();
+
+          showToast(
+            "Đã cập nhật hồ sơ.",
+            "success"
+          );
+
+        }
+
+      } catch (error) {
+
+        showToast(
+          error.message ||
+            "Không thể cập nhật hồ sơ.",
+          "error"
+        );
+
+      } finally {
+
+        submit.disabled =
+          false;
+
+        hideLoading();
+
+      }
+
+    }
+
+
+    $("editProfileBtn")
+      .addEventListener(
+        "click",
+        () => {
+
+          const user =
+            state.user;
+
+
+          openModal(
+            "Chỉnh sửa hồ sơ",
+            `
+
+              <form
+                id="editProfileForm"
+                class="modal-form"
+              >
+
+                <div class="form-group">
+
+                  <label for="editDisplayName">
+                    Họ và tên
+                  </label>
+
+                  <input
+                    type="text"
+                    id="editDisplayName"
+                    value="${escapeHtml(
+                      user.displayName || ""
+                    )}"
+                    maxlength="100"
+                    required
+                  >
+
+                </div>
+
+
+                <div class="form-group">
+
+                  <label for="editUsername">
+                    Username
+                  </label>
+
+                  <input
+                    type="text"
+                    id="editUsername"
+                    value="${escapeHtml(
+                      user.username || ""
+                    )}"
+                    maxlength="30"
+                    required
+                  >
+
+                </div>
+
+
+                <div class="form-group">
+
+                  <label for="editAvatar">
+                    Avatar URL
+                  </label>
+
+                  <input
+                    type="url"
+                    id="editAvatar"
+                    value="${escapeHtml(
+                      user.avatar || ""
+                    )}"
+                    placeholder="https://..."
+                  >
+
+                </div>
+
+
+                <div class="form-group">
+
+                  <label for="editBio">
+                    Giới thiệu
+                  </label>
+
+                  <textarea
+                    id="editBio"
+                    maxlength="500"
+                    rows="4"
+                    placeholder="Giới thiệu về bạn..."
+                  >${escapeHtml(
+                    user.bio || ""
+                  )}</textarea>
+
+                </div>
+
+
+                <button
+                  type="submit"
+                  class="primary-btn"
+                >
+                  Lưu thay đổi
+                </button>
+
+              </form>
+
+            `
+          );
+
+
+          const form =
+            $("editProfileForm");
+
+
+          if (form) {
+
+            form.onsubmit =
+              updateProfile;
+
+          }
+
+        }
+      );
+
+
+    /* ==================================================
+       CHANGE PASSWORD
+    ================================================== */
+
+    $("changePasswordBtn")
+      .addEventListener(
+        "click",
+        () => {
+
+          openModal(
+            "Đổi mật khẩu",
+            `
+
+              <form
+                id="changePasswordForm"
+                class="modal-form"
+              >
+
+                <div class="form-group">
+
+                  <label for="currentPassword">
+                    Mật khẩu hiện tại
+                  </label>
+
+                  <input
+                    type="password"
+                    id="currentPassword"
+                    required
+                    autocomplete="current-password"
+                  >
+
+                </div>
+
+
+                <div class="form-group">
+
+                  <label for="newPassword">
+                    Mật khẩu mới
+                  </label>
+
+                  <input
+                    type="password"
+                    id="newPassword"
+                    minlength="8"
+                    required
+                    autocomplete="new-password"
+                  >
+
+                  <small>
+                    Mật khẩu mới phải có ít nhất 8 ký tự.
+                  </small>
+
+                </div>
+
+
+                <div class="form-group">
+
+                  <label for="confirmNewPassword">
+                    Nhập lại mật khẩu mới
+                  </label>
+
+                  <input
+                    type="password"
+                    id="confirmNewPassword"
+                    minlength="8"
+                    required
+                    autocomplete="new-password"
+                  >
+
+                </div>
+
+
+                <button
+                  type="submit"
+                  class="primary-btn"
+                >
+                  Đổi mật khẩu
+                </button>
+
+              </form>
+
+            `
+          );
+
+
+          const form =
+            $("changePasswordForm");
+
+
+          if (!form) {
+            return;
+          }
+
+
+          form.onsubmit =
+            async (event) => {
+
+              event.preventDefault();
+
+
+              const currentPassword =
+                $("currentPassword")
+                  .value;
+
+
+              const newPassword =
+                $("newPassword")
+                  .value;
+
+
+              const confirm =
+                $("confirmNewPassword")
+                  .value;
+
+
+              if (
+                newPassword.length < 8
+              ) {
+
+                showToast(
+                  "Mật khẩu mới phải có ít nhất 8 ký tự.",
+                  "error"
+                );
+
+                return;
+
+              }
+
+
+              if (
+                newPassword !==
+                confirm
+              ) {
+
+                showToast(
+                  "Mật khẩu mới không khớp.",
+                  "error"
+                );
+
+                return;
+
+              }
+
+
+              showLoading(
+                "Đang đổi mật khẩu..."
+              );
+
+
+              try {
+
+                const result =
+                  await api(
+                    "/api/auth/change-password",
+                    {
+
+                      method: "POST",
+
+                      body: JSON.stringify({
+
+                        currentPassword,
+
+                        newPassword
+
+                      })
+
+                    }
+                  );
+
+
+                if (
+                  result.success
+                ) {
+
+                  closeModal();
+
+                  state.user =
+                    null;
+
+                  renderProfile();
+
+                  showToast(
+                    "Đổi mật khẩu thành công. Bạn đã được đăng xuất.",
+                    "success"
+                  );
+
+                }
+
+              } catch (error) {
+
+                showToast(
+                  error.message ||
+                    "Không thể đổi mật khẩu.",
+                  "error"
+                );
+
+              } finally {
+
+                hideLoading();
+
+              }
+
+            };
+
+        }
+      );
+
+
+    /* ==================================================
+       LOGIN HISTORY
+    ================================================== */
+
+    $("loginHistoryBtn")
+      .addEventListener(
+        "click",
+        async () => {
+
+          showLoading(
+            "Đang tải lịch sử đăng nhập..."
+          );
+
+
+          try {
+
+            const result =
+              await api(
+                "/api/security/login-history"
+              );
+
+
+            const history =
+              result.history || [];
+
+
+            if (
+              history.length === 0
+            ) {
+
+              openModal(
+                "Lịch sử đăng nhập",
+                `
+                  <div class="empty-state">
+                    Chưa có lịch sử đăng nhập.
+                  </div>
+                `
+              );
+
+              return;
+
+            }
+
+
+            const html =
+              history
+                .map(
+                  (item) => `
+                    <div class="security-item">
+
+                      <div>
+
+                        <strong>
+                          ${
+                            item.success
+                              ? "✅ Đăng nhập thành công"
+                              : "❌ Đăng nhập thất bại"
+                          }
+                        </strong>
+
+                        <div class="security-meta">
+                          ${escapeHtml(
+                            item.device_name ||
+                            "Thiết bị không xác định"
+                          )}
+                        </div>
+
+                      </div>
+
+                      <div class="security-meta">
+
+                        ${escapeHtml(
+                          item.ip_address ||
+                          "---"
+                        )}
+
+                        <br>
+
+                        ${formatDate(
+                          item.created_at
+                        )}
+
+                      </div>
+
+                    </div>
+                  `
+                )
+                .join("");
+
+
+            openModal(
+              "Lịch sử đăng nhập",
+              `<div class="security-list">${html}</div>`
+            );
+
+
+          } catch (error) {
+
+            showToast(
+              error.message ||
+                "Không thể tải lịch sử đăng nhập.",
+              "error"
+            );
+
+          } finally {
+
+            hideLoading();
+
+          }
+
+        }
+      );
+
+
+    /* ==================================================
+       SESSIONS
+    ================================================== */
+
+    $("sessionsBtn")
+      .addEventListener(
+        "click",
+        async () => {
+
+          showLoading(
+            "Đang tải thiết bị..."
+          );
+
+
+          try {
+
+            const result =
+              await api(
+                "/api/security/sessions"
+              );
+
+
+            const sessions =
+              result.sessions || [];
+
+
+            if (
+              sessions.length === 0
+            ) {
+
+              openModal(
+                "Thiết bị đăng nhập",
+                `
+                  <div class="empty-state">
+                    Không có phiên đăng nhập.
+                  </div>
+                `
+              );
+
+              return;
+
+            }
+
+
+            const html =
+              sessions
+                .map(
+                  (session) => `
+                    <div class="security-item">
+
+                      <div>
+
+                        <strong>
+                          📱 ${
+                            escapeHtml(
+                              session.device_name ||
+                              "Thiết bị không xác định"
+                            )
+                          }
+                        </strong>
+
+                        <div class="security-meta">
+                          IP:
+                          ${escapeHtml(
+                            session.ip_address ||
+                            "---"
+                          )}
+                        </div>
+
+                      </div>
+
+                      <div class="security-meta">
+
+                        Hoạt động:
+                        <br>
+
+                        ${formatDate(
+                          session.last_active
+                        )}
+
+                      </div>
+
+                    </div>
+                  `
+                )
+                .join("");
+
+
+            openModal(
+              "Thiết bị đăng nhập",
+              `<div class="security-list">${html}</div>`
+            );
+
+
+          } catch (error) {
+
+            showToast(
+              error.message ||
+                "Không thể tải danh sách thiết bị.",
+              "error"
+            );
+
+          } finally {
+
+            hideLoading();
+
+          }
+
+        }
+      );
+
+
+    /* ==================================================
+       CONNECTED APPS
+    ================================================== */
+
+    $("connectedAppsBtn")
+      .addEventListener(
+        "click",
+        async () => {
+
+          showLoading(
+            "Đang tải ứng dụng..."
+          );
+
+
+          try {
+
+            const result =
+              await api(
+                "/api/apps"
+              );
+
+
+            const apps =
+              result.apps || [];
+
+
+            if (
+              apps.length === 0
+            ) {
+
+              openModal(
+                "Ứng dụng đã kết nối",
+                `
+                  <div class="empty-state">
+                    Chưa có ứng dụng nào được kết nối.
+                  </div>
+                `
+              );
+
+              return;
+
+            }
+
+
+            const html =
+              apps
+                .map(
+                  (app) => `
+                    <div
+                      class="app-item"
+                      data-app-id="${escapeHtml(
+                        app.id
+                      )}"
+                    >
+
+                      <div>
+
+                        <strong>
+                          🔗 ${escapeHtml(
+                            app.app_name
+                          )}
+                        </strong>
+
+                        <div class="security-meta">
+                          ${escapeHtml(
+                            app.app_key
+                          )}
+                        </div>
+
+                      </div>
+
+                      <button
+                        type="button"
+                        class="small-danger-btn revoke-app"
+                        data-id="${escapeHtml(
+                          app.id
+                        )}"
+                      >
+                        Thu hồi
+                      </button>
+
+                    </div>
+                  `
+                )
+                .join("");
+
+
+            openModal(
+              "Ứng dụng đã kết nối",
+              `<div class="app-list">${html}</div>`
+            );
+
+
+            document
+              .querySelectorAll(
+                ".revoke-app"
+              )
+              .forEach((button) => {
+
+                button.addEventListener(
+                  "click",
+                  async () => {
+
+                    const id =
+                      button.dataset.id;
+
+
+                    if (
+                      !confirm(
+                        "Bạn có chắc muốn thu hồi quyền truy cập ứng dụng này?"
+                      )
+                    ) {
+                      return;
+                    }
+
+
+                    try {
+
+                      await api(
+                        `/api/apps/${id}`,
+                        {
+                          method: "DELETE"
+                        }
+                      );
+
+
+                      const item =
+                        button.closest(
+                          ".app-item"
+                        );
+
+
+                      if (item) {
+                        item.remove();
+                      }
+
+
+                      showToast(
+                        "Đã thu hồi quyền truy cập.",
+                        "success"
+                      );
+
+                    } catch (error) {
+
+                      showToast(
+                        error.message ||
+                          "Không thể thu hồi quyền.",
+                        "error"
+                      );
+
+                    }
+
+                  }
+                );
+
+              });
+
+
+          } catch (error) {
+
+            showToast(
+              error.message ||
+                "Không thể tải ứng dụng.",
+              "error"
+            );
+
+          } finally {
+
+            hideLoading();
+
+          }
+
+        }
+      );
+
+
+    /* ==================================================
+       NOTIFICATIONS
+    ================================================== */
+
+    $("notificationsBtn")
+      .addEventListener(
+        "click",
+        async () => {
+
+          showLoading(
+            "Đang tải thông báo..."
+          );
+
+
+          try {
+
+            const result =
+              await api(
+                "/api/notifications"
+              );
+
+
+            const notifications =
+              result.notifications || [];
+
+
+            if (
+              notifications.length === 0
+            ) {
+
+              openModal(
+                "Thông báo",
+                `
+                  <div class="empty-state">
+                    Bạn chưa có thông báo nào.
+                  </div>
+                `
+              );
+
+              return;
+
+            }
+
+
+            const html =
+              notifications
+                .map(
+                  (notification) => `
+                    <div
+                      class="notification-item ${
+                        notification.is_read
+                          ? ""
+                          : "unread"
+                      }"
+                    >
+
+                      <strong>
+                        ${escapeHtml(
+                          notification.title
+                        )}
+                      </strong>
+
+                      <p>
+                        ${escapeHtml(
+                          notification.message
+                        )}
+                      </p>
+
+                      <small>
+                        ${formatDate(
+                          notification.created_at
+                        )}
+                      </small>
+
+                    </div>
+                  `
+                )
+                .join("");
+
+
+            openModal(
+              "Thông báo",
+              `<div class="notification-list">${html}</div>`
+            );
+
+
+          } catch (error) {
+
+            showToast(
+              error.message ||
+                "Không thể tải thông báo.",
+              "error"
+            );
+
+          } finally {
+
+            hideLoading();
+
+          }
+
+        }
+      );
+
+
+    /* ==================================================
+       LOGOUT
+    ================================================== */
+
+    async function logout() {
+
+      showLoading(
+        "Đang đăng xuất..."
+      );
+
+
+      try {
+
+        await api(
+          "/api/auth/logout",
+          {
+            method: "POST"
+          }
+        );
+
+
+      } catch (error) {
+
+        console.warn(
+          "Logout:",
+          error.message
+        );
+
+      } finally {
+
+        state.user =
+          null;
+
+        renderProfile();
+
+        hideLoading();
+
+        showToast(
+          "Đã đăng xuất tài khoản.",
+          "info"
+        );
+
+      }
+
+    }
+
+
+    $("logoutBtn")
+      .addEventListener(
+        "click",
+        logout
+      );
+
+
+    $("dashboardLogoutBtn")
+      .addEventListener(
+        "click",
+        logout
+      );
+
+
+    /* ==================================================
+       LOGOUT ALL
+    ================================================== */
+
+    async function logoutAllDevices() {
+
+      const confirmed =
+        confirm(
+          "Bạn có chắc muốn đăng xuất khỏi tất cả thiết bị?"
+        );
+
+
+      if (!confirmed) {
+        return;
+      }
+
+
+      showLoading(
+        "Đang đăng xuất tất cả thiết bị..."
+      );
+
+
+      try {
+
+        await api(
+          "/api/auth/logout-all",
+          {
+            method: "POST"
+          }
+        );
+
+
+        state.user =
+          null;
+
+        renderProfile();
+
+
+        showToast(
+          "Đã đăng xuất khỏi tất cả thiết bị.",
+          "success"
+        );
+
+
+      } catch (error) {
+
+        showToast(
+          error.message ||
+            "Không thể đăng xuất tất cả thiết bị.",
+          "error"
+        );
+
+      } finally {
+
+        hideLoading();
+
+      }
+
+    }
+
+
+    $("logoutAllBtn")
+      .addEventListener(
+        "click",
+        logoutAllDevices
+      );
+
+
+    /* ==================================================
+       COPY KAISOUL ID
+    ================================================== */
+
+    $("copyIdBtn")
+      .addEventListener(
+        "click",
+        async () => {
+
+          const id =
+            state.user?.kaisoulId;
+
+
+          if (!id) {
+            return;
+          }
+
+
+          try {
+
+            await navigator.clipboard.writeText(
+              id
+            );
+
+
+            showToast(
+              "Đã sao chép KAISOUL ID.",
+              "success"
+            );
+
+          } catch {
+
+            showToast(
+              `KAISOUL ID: ${id}`,
+              "info"
+            );
+
+          }
+
+        }
+      );
+
+
+    /* ==================================================
+       INITIALIZATION
+    ================================================== */
+
+    async function init() {
+
+      showLoading(
+        "Đang kiểm tra tài khoản..."
+      );
+
+
+      try {
+
+        await checkSession();
+
+      } finally {
+
+        hideLoading();
+
+      }
+
+    }
+
+
+    init();
+
+  </script>
+
+</body>
+  </html>
